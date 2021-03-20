@@ -1,5 +1,5 @@
 @echo off
-title Bot made by "Echo" (yellowycorn6963 on twitch)
+title Bot made by Echo (yellowycorn6963 on twitch)
 
 echo Installing required packages
 echo ----------------------------
