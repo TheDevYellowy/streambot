@@ -1,0 +1,28 @@
+{
+  "name": "streambot",
+  "version": "1.0.0",
+  "description": "A discord bot I am making at www.twitch.tv/yellowycorn6963 <div>\r ## Packages used in this bot <div>\r - discord.js\r - discord-music-player (https://www.npmjs.com/package/discord-music-player) \r - moment\r - mongoose (https://www.npmjs.com/package/mongoose)\r - chalk",
+  "main": "index.js",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "discord-music-player": "^7.0.1",
+    "discord.js": "^12.5.1",
+    "moment": "^2.29.1",
+    "mongoose": "^5.12.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Echo-BotDev/streambot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Echo-BotDev/streambot/issues"
+  },
+  "homepage": "https://github.com/Echo-BotDev/streambot#readme"
+}
