@@ -1,7 +1,7 @@
 # streambot
 A discord bot I am making at www.twitch.tv/yellowycorn6963 
 
-#Links
+# Links
 - [Packages](#packages-used-in-this-bot)
 - [Install Guide](#install-guide)
 
