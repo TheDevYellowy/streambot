@@ -51,6 +51,7 @@ module.exports = class Bot extends Client {
 					break;
 				default:
 					message.channel.send(`Error Occured`);
+					this.logger.err(error, "Music");
 					break;
             }
         });

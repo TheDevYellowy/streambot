@@ -23,11 +23,10 @@ module.exports = {
   },
   ready (client) {
       console.log(chalk.cyan([
-        `\n/==================== Started at ${chalk.yellow(moment(client.startTime).format('H:mm:ss'))} ====================/`,
-        `| Logged in as ${chalk.yellow(client.user.username)}.`,
+        `\n/==================== Started at ${chalk.yellow(moment(client.startTime).format('HH:mm:ss'))} ====================/`,
+        `| Login successful ${chalk.yellow(client.user.username)} is ready to play music`,
         `| ${chalk.white(`Your discord status is ${status[client.config.ting.status.toLowerCase()]}. Current stats:`)}`,
-        `|   - ${chalk.yellow(client.guild.cache.size)} servers (${chalk.yellow(Object.keys(client.channelGuildMap).length)} channels) (${chalk.yellow(client.users.size)} users)`,
-        `| ${chalk.white('Logging was successful. Waiting for orders...')}`,
+        `|   - ${chalk.yellow(client.guilds.cache.size)} servers (${chalk.yellow(client.users.cache.size)} users)`,
         `| Use ${chalk.yellow('Control + C')} to exit. Or ${chalk.yellow('Cmd + C')} for Mac.`,
         `/=============================================================/`
       ].join('\n')))

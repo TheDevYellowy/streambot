@@ -19,16 +19,13 @@ module.exports = class NP extends Command {
 	async run (message, args) {
         const song = this.client.player.nowPlaying(message);
         const embed = new Discord.MessageEmbed();
-        const progressBar = this.client.player.createProgressBar(message, {
-            size: 15,
-            block: "=",
-            arrow: ">"
-        });
+        const progressBar = this.client.player.createProgressBar(message, { timecodes: true });
 
         if(song){
             embed.setTitle(`${message.guild.name}`);
+            embed.setThumbnail(song.thumbnail);
             embed.addField("Song Name", `${song.name}`);
-            embed.addField("\s", `${progressBar}`);
+            embed.addField("Song Progress", `${progressBar}`);
         }
 
         message.channel.send(embed);
