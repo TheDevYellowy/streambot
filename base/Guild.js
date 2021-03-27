@@ -1,8 +1,13 @@
-const mongoose = require("mongoose");
+const { model, Schema} = require("mongoose");
 const config = require("../config");
 
-module.exports = new mongoose.model("Guild", new mongoose.Schema({
+module.exports = new model("Guild", new Schema({
     
     id: { type: String },
-    prefix: { type: String, default: config.prefix }
+    prefix: { type: String, default: config.prefix },
+    queue: {
+        name: { type: String, required: true },
+        id: { type: String },
+        url: { type: String }
+    }
 }));
