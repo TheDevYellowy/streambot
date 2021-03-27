@@ -108,3 +108,6 @@ config/
 
 # Run file
 run.bat
+
+# testing command
+testing.js
