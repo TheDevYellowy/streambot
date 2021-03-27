@@ -7,6 +7,7 @@ cd %~dp0
 cmd /c "npm i"
 echo .
 echo Done!
+pause
 echo Creating run file
 echo ----------------------------
 echo @echo off > run.bat
