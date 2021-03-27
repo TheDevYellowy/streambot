@@ -16,6 +16,18 @@ module.exports = class Queue extends Command {
 	}
 
 	async run (message, args) {
-        
+        let queue = this.client.player.getQueue(message);
+		let embed = new Discord.MessageEmbed();
+
+		if(queue){
+			embed.setTitle("Queue");
+			embed.setDescription(`${queue.songs.map((song, i) => {
+				return `${i === 0 ? `Now Playing` : `#${i+1}`} - ${song.name} | ${song.author}`
+			}).join("\n")}`);
+		} else {
+			return message.channel.send("There is no queue for this server");
+		}
+
+		message.channel.send(embed);
     }
 }
