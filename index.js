@@ -34,7 +34,7 @@ const init = async() => {
     
 	client.login(config.token);
 
-    mongoose.connect(config.mongo, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
+    mongoose.connect(config.mongoDB, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
 		client.logger.log("Connected to the Mongodb database.", "Mongoose");
 	}).catch((err) => {
 		client.logger.err(`Unable to connect to the Mongodb database. Error: ${err}`, "Mongoose");
