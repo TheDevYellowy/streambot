@@ -10,8 +10,8 @@ echo Done!
 pause
 echo Creating run file
 echo ----------------------------
-echo @echo off > run.bat
-echo title Discord bot > run.bat
+echo @echo off >> run.bat
+echo title Discord bot >> run.bat
 echo :START >> run.bat
 echo node index.js >> run.bat
 echo goto START >> run.bat
