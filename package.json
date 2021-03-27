@@ -8,9 +8,9 @@
     "discord-music-player": "^7.0.1",
     "discord.js": "^12.5.1",
     "moment": "^2.29.1",
-    "mongoose": "^5.12.2"
+    "mongoose": "^5.12.2",
+    "opusscript": "^0.0.8"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
