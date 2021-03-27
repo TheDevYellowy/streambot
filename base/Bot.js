@@ -27,9 +27,16 @@ module.exports = class Bot extends Client {
             leaveOnEmpty: true,
         });
 
-        this.player.on("queueEnd", (message, queue) => {
-            message.channel.send(`Queue ended, I have left the VC`)
-        });
+        this.player
+		.on("queueEnd", (message, queue) => {
+            message.channel.send(`Queue ended, I have left the VC`);
+        })
+		.on("songAdd", (message, queue, song) => {
+			message.channel.send(`**${song.name} has been added to the queue**`);
+		})
+		.on("songFirst", (message, song) => {
+			message.channel.send(`**${song.name}** is playing`);
+		})
 
         this.player.on('error', (message, error) => {
             switch(error){

@@ -24,10 +24,10 @@ module.exports = class Play extends Command {
             message.channel.send("You need to be in a voice channel");
         }
 
-        const perms = voice.permissionsFor(this.client.user);
-        if(!perms.has("CONNECT") || !perms.has("SPEAK")){
-            message.channel.send("Please make sure I have the correct permissions (Connect / Speak).");
-        }
+        //const perms = voice.permissionsFor(this.client.user);
+        //if(!perms.has("CONNECT") || !perms.has("SPEAK")){
+        //    message.channel.send("Please make sure I have the correct permissions (Connect / Speak).");
+        //}
 
         if(this.client.player.isPlaying(message)){
             await this.client.player.addToQueue(message, args.join(" "));
