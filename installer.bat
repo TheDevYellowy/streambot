@@ -17,10 +17,12 @@ echo node index.js >> run.bat
 echo goto START >> run.bat
 echo "run.bat" created
 echo -----------------------------
+pause
 echo Deleting install file
 echo -----------------------------
 del "%~f0"
 echo Starting the bot...
 call run.bat
 echo closing the installer...
+pause
 end
