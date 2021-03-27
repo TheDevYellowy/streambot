@@ -1,5 +1,5 @@
 const { MessageEmbed, Util, Client, Collection } = require("discord.js");
-const { Player } = require("discord-music-player");
+const { Player, Utils } = require("discord-music-player");
 const util = require("util");
 const path = require("path");
 const moment = require("moment");
@@ -35,7 +35,7 @@ module.exports = class Bot extends Client {
 			message.channel.send(`**${song.name} has been added to the queue**`);
 		})
 		.on("songFirst", (message, song) => {
-			message.channel.send(`**${song.name}** is playing`);
+			let songMessage = message.channel.send(`**${song.name}** is playing`);
 		})
 
         this.player.on('error', (message, error) => {
