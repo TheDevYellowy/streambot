@@ -1,0 +1,11 @@
+module.exports = {
+    token: "",
+    ownerID: ",
+    prefix: "",
+    mongo: "",
+    ting: {
+        status: "",
+        game: "",
+        url: ""
+    }
+}
