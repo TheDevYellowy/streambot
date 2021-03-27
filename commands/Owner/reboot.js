@@ -15,6 +15,8 @@ module.exports = class Reboot extends Command {
 	}
 
 	async run (message, args) {
+		await this.client.logger.log("Rebooting", "Reboot", "bgRed", true);
+
         await process.exit();
     }
 }

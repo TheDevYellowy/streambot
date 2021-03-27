@@ -17,9 +17,9 @@ module.exports = class NP extends Command {
 	}
 
 	async run (message, args) {
-        const song = this.player.nowPlaying(message);
+        const song = this.client.player.nowPlaying(message);
         const embed = new Discord.MessageEmbed();
-        const progressBar = this.player.createProgressBar(message, {
+        const progressBar = this.client.player.createProgressBar(message, {
             size: 15,
             block: "=",
             arrow: ">"
@@ -30,5 +30,7 @@ module.exports = class NP extends Command {
             embed.addField("Song Name", `${song.name}`);
             embed.addField("\s", `${progressBar}`);
         }
+
+        message.channel.send(embed);
     }
 }
