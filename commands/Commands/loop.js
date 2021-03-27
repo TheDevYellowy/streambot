@@ -22,6 +22,6 @@ module.exports = class Loop extends Command {
         await data.guild.save();
 
         await this.client.player.setRepeatMode(message, status);
-        message.client.send(`Loop set to **${status}**`);
+        message.channel.send(`Loop set to **${status}**`);
     }
 }
