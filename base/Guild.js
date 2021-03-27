@@ -1,5 +1,5 @@
 const { model, Schema} = require("mongoose");
-const config = require("../config");
+const config = require("../config/config");
 
 module.exports = new model("Guild", new Schema({
     
@@ -7,7 +7,7 @@ module.exports = new model("Guild", new Schema({
     prefix: { type: String, default: config.prefix },
     queue: {
         name: { type: String, required: true },
-        id: { type: String },
-        url: { type: String }
+        id: { type: String, required: true },
+        url: { type: String, required: true }
     }
 }));

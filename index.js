@@ -2,7 +2,7 @@ const readdir = require("util").promisify(require("fs").readdir);
 const chalk = require("chalk");
 const mongoose = require("mongoose");
 
-const config = require("./config");
+const config = require("./config/config");
 
 const Bot = require("./base/Bot"),
     client = new Bot();
@@ -32,9 +32,9 @@ const init = async() => {
 		delete require.cache[require.resolve(`./events/${file}`)];
 	});
     
-	client.login(client.config.token);
+	client.login(config.token);
 
-    mongoose.connect(client.config.mongo, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
+    mongoose.connect(config.mongo, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
 		client.logger.log("Connected to the Mongodb database.", "Mongoose");
 	}).catch((err) => {
 		client.logger.err(`Unable to connect to the Mongodb database. Error: ${err}`, "Mongoose");
