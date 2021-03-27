@@ -29,6 +29,11 @@ module.exports = class Play extends Command {
             message.channel.send("Please make sure I have the correct permissions (Connect / Speak).");
         }
 
-        await this.client.player.play(message, args.join(" "));
+        if(this.client.player.isPlaying(message)){
+            await this.client.player.addToQueue(message, args.join(" "));
+        } else {
+            await this.client.player.play(message, args.join(" "));
+        }
+        
     }
 }
