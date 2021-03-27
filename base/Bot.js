@@ -7,7 +7,7 @@ const moment = require("moment");
 module.exports = class Bot extends Client {
     constructor(options){
         super(options);
-        this.config = require("../config");
+        this.config = require("../config/config");
         this.commands = new Collection();
         this.aliases = new Collection();
         this.helpers = require("../helpers/helpers");
