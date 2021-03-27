@@ -10,7 +10,7 @@ const Bot = require("./base/Bot"),
 const init = async() => {
 
     const directories = await readdir("./commands");
-    client.logger.log(`loading a total of ${directories.length} directories`, "CMD");
+    client.logger.log(`loading a total of ${directories.length} directories`, "CMD", "bgGreen");
     directories.forEach(async (dir) => {
 		const commands = await readdir("./commands/"+dir+"/");
 		commands.filter((cmd) => cmd.split(".").pop() === "js").forEach((cmd) => {
