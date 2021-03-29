@@ -28,6 +28,10 @@ module.exports = class Queue extends Command {
 			return message.channel.send("There is no queue for this server");
 		}
 
+		if(embed.length > 6000){
+			return message.channel.send(`The queue is to large to fit in an embed with ${queue.songs.length} songs, please use the nowplaying (np) command`);
+		}
+
 		message.channel.send(embed);
     }
 }

@@ -23,6 +23,11 @@ module.exports = class {
 			message.guild.data = data.guild = guild;
 		}
 
+		if(message.guild){
+			const member = await client.findOrCreateMember({ id: message.author.id, guildID: message.guild.id });
+			data.member = member;
+		}
+
 		if(message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))){
 			if(message.guild){
 				return message.channel.send(`My prefix for this server is ${data.guild.prefix}`);
@@ -87,6 +92,8 @@ module.exports = class {
 		//client.logger.log(`${message.author.username} (${message.author.id}) ran command ${cmd.help.name}`, "cmd");
 
 		try {
+			data.member.commandsRun = data.member.commandsRun + 1;
+			await data.member.save();
 			cmd.run(message, args, data);
 		} catch(e){
 			console.error(e);

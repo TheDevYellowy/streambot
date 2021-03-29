@@ -38,7 +38,7 @@ module.exports = class Bot extends Client {
 			message.channel.send(`**${song.name}** is playing`);
 		})
 		.on("playlistAdd", (message, queue, playlist) => {
-			message.channel.send(`**${playlist.title}** added to queue with ${playlist.videos} songs`);
+			message.channel.send(`**${playlist.title}** added to queue with ${playlist.videoCount} songs and ${queue.songs.length} total songs`);
 		})
 
         this.player.on('error', (message, error) => {
@@ -96,6 +96,23 @@ module.exports = class Bot extends Client {
 		return false;
 	}
 
+	async findOrCreateGuild({ id: guildID }, isLean){
+		if(this.databaseCache.guilds.get(guildID)){
+			return isLean ? this.databaseCache.guilds.get(guildID).toJSON() : this.databaseCache.guilds.get(guildID);
+		} else {
+			let guildData = (isLean ? await this.guildsData.findOne({ id: guildID }).populate("members").lean() : await this.guildsData.findOne({ id: guildID }).populate("members"));
+			if(guildData){
+				if(!isLean) this.databaseCache.guilds.set(guildID, guildData);
+				return guildData;
+			} else {
+				guildData = new this.guildsData({ id: guildID });
+				await guildData.save();
+				this.databaseCache.guilds.set(guildID, guildData);
+				return isLean ? guildData.toJSON() : guildData;
+			}
+		}
+	}
+
     async findOrCreateMember({ id: memberID, guildID }, isLean){
 		if(this.databaseCache.members.get(`${memberID}${guildID}`)){
 			return isLean ? this.databaseCache.members.get(`${memberID}${guildID}`).toJSON() : this.databaseCache.members.get(`${memberID}${guildID}`);
@@ -118,20 +135,5 @@ module.exports = class Bot extends Client {
 		}
 	}
 
-    async findOrCreateGuild({ id: guildID }, isLean){
-		if(this.databaseCache.guilds.get(guildID)){
-			return isLean ? this.databaseCache.guilds.get(guildID).toJSON() : this.databaseCache.guilds.get(guildID);
-		} else {
-			let guildData = (isLean ? await this.guildsData.findOne({ id: guildID }).populate("members").lean() : await this.guildsData.findOne({ id: guildID }).populate("members"));
-			if(guildData){
-				if(!isLean) this.databaseCache.guilds.set(guildID, guildData);
-				return guildData;
-			} else {
-				guildData = new this.guildsData({ id: guildID });
-				await guildData.save();
-				this.databaseCache.guilds.set(guildID, guildData);
-				return isLean ? guildData.toJSON() : guildData;
-			}
-		}
-	}
+    
 }
