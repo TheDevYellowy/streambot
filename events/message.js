@@ -75,9 +75,7 @@ module.exports = class {
 				}
 			});
 			if(neededPermissions.length > 0){
-				return message.error("misc:MISSING_MEMBER_PERMS", {
-					list: neededPermissions.map((p) => `\`${p}\``).join(", ")
-				});
+				return message.channel.send(`you need the following permissions to use this command ${neededPermissions.map((p) => `\`${p}\``).join(", ")}`);
 			}
 		}
 
