@@ -35,7 +35,10 @@ module.exports = class Bot extends Client {
 			message.channel.send(`**${song.name} has been added to the queue**`);
 		})
 		.on("songFirst", (message, song) => {
-			let songMessage = message.channel.send(`**${song.name}** is playing`);
+			message.channel.send(`**${song.name}** is playing`);
+		})
+		.on("playlistAdd", (message, queue, playlist) => {
+			message.channel.send(`**${playlist.title}** added to queue with ${playlist.videos} songs`);
 		})
 
         this.player.on('error', (message, error) => {
