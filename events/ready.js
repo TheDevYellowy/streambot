@@ -90,14 +90,14 @@ module.exports = class {
                     data: {
                         type: 4,
                         data: {
-                            content: "1"
+                            content: `${cmd = await client.commands.get("testing").run(interaction, int)}`
                         }
                     }
                 });
-                cmd = await client.commands.get("testing");
-                cmd.run(int);
+                /*cmd = await client.commands.get("testing");
+                cmd.run(int, interaction);*/
             }else if(command == "help"){
-                cmd.run(int);
+                cmd.run(int, interaction);
             }
         });
 
