@@ -6,6 +6,7 @@
   "dependencies": {
     "chalk": "^4.1.0",
     "discord-music-player": "^7.0.1",
+    "discord-slash-commands-client": "^1.1.1",
     "discord.js": "^12.5.1",
     "moment": "^2.29.1",
     "mongoose": "^5.12.2",

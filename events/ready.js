@@ -1,3 +1,5 @@
+const interactions = require("discord-slash-commands-client");
+
 module.exports = class {
     
     constructor(client){
@@ -7,6 +9,7 @@ module.exports = class {
     async run() {
 
         const client = this.client;
+        const int = new interactions.Client(client.config.token, client.user.id);
 
         const status = require("../config/config").ting.status;
         if(status.toLowerCase() === "streaming"){
@@ -18,7 +21,21 @@ module.exports = class {
             client.user.setActivity(`${client.config.ting.game}`, { type: `${status}`});
         }
 
-        client.api.applications(client.user.id).guilds("701429220538187876").commands.post({
+        int
+            .createCommand({
+                name: "ping",
+                description: "ping pong"
+            })
+            .then(console.log)
+            .catch(console.error);
+
+        client.on("interactionCreate", (interaction) => {
+            if(interaction.name === "ping"){
+                interaction.channel.send("pong");
+            }
+        });
+
+        /*client.api.applications(client.user.id).guilds("701429220538187876").commands.post({
             data: {
                 name: "play",
                 description: "plays a song from a url",
@@ -83,23 +100,23 @@ module.exports = class {
                 console.log(interaction.message);
                 client.player.play(interaction, url);
             } else if(command == "test"){
-                /*let arg1 = args.find(arg => arg.name.toLowerCase() == "arg1").value;
-                let arg2 = args.find(arg => arg.name.toLowerCase() == "arg2").value;*/
-                //console.log(interaction);
+                let arg1 = args.find(arg => arg.name.toLowerCase() == "arg1").value;
+                let arg2 = args.find(arg => arg.name.toLowerCase() == "arg2").value;
+                console.log(interaction);
                 client.api.interactions(interaction.id, interaction.token).callback.post({
                     data: {
                         type: 4,
                         data: {
-                            content: `${cmd = await client.commands.get("testing").run(interaction, int)}`
+                            content: `${cmd = await client.commands.get("testing").run(interaction, int) ? "true" : "false"}`
                         }
                     }
                 });
-                /*cmd = await client.commands.get("testing");
-                cmd.run(int, interaction);*/
+                cmd = await client.commands.get("testing");
+                cmd.run(int, interaction);
             }else if(command == "help"){
                 cmd.run(int, interaction);
             }
-        });
+        });*/
 
         this.client.logger.ready(client);
     }

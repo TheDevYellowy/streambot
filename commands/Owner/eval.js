@@ -26,7 +26,7 @@ module.exports = class Eval extends Command {
                 output = require("util").inspect(output, { depth: 0 });
             }
             if(output.includes(this.client.token)){
-                output = output.replace(this.client.token, "T0K3N");
+                output =  output.replace(this.client.token, "T0K3N");
             }
             message.channel.send(output, {
                 code: "js"

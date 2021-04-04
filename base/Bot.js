@@ -13,13 +13,14 @@ module.exports = class Bot extends Client {
         this.helpers = require("../helpers/helpers");
         this.logger = require("../helpers/logger");
         this.wait = util.promisify(setTimeout);
+		this.usersData = require("./User");
         this.guildsData = require("./Guild");
         this.membersData = require("./Member");
 
         this.databaseCache = {};
+		this.databaseCache.users = new Collection();
         this.databaseCache.guilds = new Collection();
         this.databaseCache.members = new Collection();
-
 
         this.player = new Player(this, {
             volume: 75,
@@ -135,5 +136,20 @@ module.exports = class Bot extends Client {
 		}
 	}
 
-    
+	async findOrCreateUser({ id: userID }, isLean){
+		if(this.databaseCache.users.get(`${userID}`)){
+			return isLean ? this.databaseCache.users.get(`${userID}`).toJSON() : this.databaseCache.users.get(`${userID}`);
+		} else {
+			let userData = (isLean ? await this.usersData.findOne({ id: userID }).lean() : await this.usersData.findOne({ id: userID }));
+			if(userData){
+				if(!isLean) this.databaseCache.users.set(`${userID}`, userData);
+				return userData;
+			} else {
+				userData = await this.usersData({ id: userID });
+				await userData.save();
+				this.databaseCache.users.set(`${userID}`, userData);
+				return isLean ? userData.toJSON() : userData;
+			}
+		}
+	}
 }

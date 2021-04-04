@@ -28,6 +28,11 @@ module.exports = class {
 			data.member = member;
 		}
 
+		if(message.guild){
+			const user = await client.findOrCreateUser({ id: message.author.id });
+			data.user = user;
+		}
+
 		if(message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))){
 			if(message.guild){
 				return message.channel.send(`My prefix for this server is ${data.guild.prefix}`);
@@ -93,7 +98,9 @@ module.exports = class {
 
 		try {
 			data.member.commandsRun = data.member.commandsRun + 1;
+			data.user.commandsRun = data.user.commandsRun + 1;
 			await data.member.save();
+			await data.user.save();
 			cmd.run(message, args, data, int);
 		} catch(e){
 			console.error(e);
