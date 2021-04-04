@@ -21,6 +21,7 @@ module.exports = class Queue extends Command {
 
 		if(queue){
 			embed.setTitle("Queue");
+			embed.setColor(this.client.config.embed.color)
 			embed.setDescription(`${queue.songs.map((song, i) => {
 				return `${i === 0 ? `Now Playing` : `#${i+1}`} - ${song.name} | ${song.author}`
 			}).join("\n")}`);

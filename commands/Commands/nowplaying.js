@@ -24,6 +24,7 @@ module.exports = class NP extends Command {
         if(song){
             embed.setTitle(`${message.guild.name}`);
             embed.setThumbnail(song.thumbnail);
+			embed.setColor(this.client.config.embed.color)
             embed.addField("Song Name", `${song.name}`);
             embed.addField("Song Progress", `${progressBar}`);
         }

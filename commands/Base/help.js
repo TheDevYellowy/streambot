@@ -56,7 +56,8 @@ module.exports = class Help extends Command {
                     });
 
                 const embed = new Discord.MessageEmbed()
-                    .setDescription(`● to get a help on a specific command type ${data.guild.prefix}help <command>`);
+                    .setDescription(`● to get a help on a specific command type ${data.guild.prefix}help <command>`)
+                    .setColor(this.client.config.embed.color);
             
                 categories.sort().forEach((cat) => {
                     const tCommands = commands.filter((cmd) => cmd.help.category === cat);
