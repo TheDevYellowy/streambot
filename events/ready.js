@@ -21,7 +21,7 @@ module.exports = class {
             client.user.setActivity(`${client.config.ting.game}`, { type: `${status}`});
         }
 
-        int
+        /*int
             .createCommand({
                 name: "ping",
                 description: "ping pong"
@@ -33,7 +33,7 @@ module.exports = class {
             if(interaction.name === "ping"){
                 interaction.channel.send("pong");
             }
-        });
+        });*/
 
         /*client.api.applications(client.user.id).guilds("701429220538187876").commands.post({
             data: {
