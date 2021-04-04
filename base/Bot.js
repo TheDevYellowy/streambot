@@ -41,7 +41,7 @@ module.exports = class Bot extends Client {
 			message.channel.send(`**${playlist.title}** added to queue with ${playlist.videoCount} songs and ${queue.songs.length} total songs`);
 		})
 
-        this.player.on('error', (message, error) => {
+        this.player.on('error', async(message, error) => {
             switch(error){
                 case 'NotConnected': 
                     message.channel.send(`You need to be connected to a voice channel`);
@@ -53,8 +53,8 @@ module.exports = class Bot extends Client {
 					message.channel.send(`Can't play live videos`);
 					break;
 				default:
+					await this.logger.err(error, "Music");
 					message.channel.send(`Error Occured`);
-					this.logger.err(error, "Music");
 					break;
             }
         });

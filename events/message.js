@@ -87,12 +87,14 @@ module.exports = class {
 			return message.channle.send("Only the owner has access to this command");
 		}
 
+		let int = false
+
 		//client.logger.log(`${message.author.username} (${message.author.id}) ran command ${cmd.help.name}`, "cmd");
 
 		try {
 			data.member.commandsRun = data.member.commandsRun + 1;
 			await data.member.save();
-			cmd.run(message, args, data);
+			cmd.run(message, args, data, int);
 		} catch(e){
 			console.error(e);
 			return message.channel.send("An error has occured please try this command again if the probelm persists my developer will look at the logs and fix the bot\nPlease do not spam the command");
