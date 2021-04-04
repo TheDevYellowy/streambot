@@ -9,7 +9,9 @@ module.exports = {
         url: ""
     },
     embed: {
-        links: "",
+        links: [
+            ""
+        ],
         color: ""
     }
 }
