@@ -7,5 +7,9 @@ module.exports = {
         status: "",
         game: "",
         url: ""
+    },
+    embed: {
+        links: "",
+        color: ""
     }
 }
