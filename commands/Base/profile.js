@@ -8,7 +8,7 @@ module.exports = class Profile extends Command {
 			name: "profile",
 			dirname: __dirname,
 			enabled: true,
-			aliases: [ "p" ],
+			aliases: [],
 			memberPermissions: [],
 			botPermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
 			ownerOnly: false
