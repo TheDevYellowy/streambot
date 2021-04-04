@@ -17,12 +17,12 @@ module.exports = class Profile extends Command {
 
 	async run (message, args, data) {
         const config = require("../../config/config");
-
+        
         const embed = new MessageEmbed()
             .setAuthor(`${message.author.username} profile`, message.author.displayAvatarURL({ dynamic: true }))
             .addField("Commands Run (in this server)", data.member.commandsRun)
             .addField("Commands Run (Total)", data.user.commandsRun)
-            .addField("\u200b", config.embed.links)
+            .addField("\u200b", config.embed.links.join('\n'))
             .setColor(config.embed.color)
             .setTimestamp();
         
