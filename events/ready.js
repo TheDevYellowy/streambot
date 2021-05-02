@@ -1,4 +1,5 @@
 const interactions = require("discord-slash-commands-client");
+const Dashboard = require("discord-bot-dashboard");
 
 module.exports = class {
     

@@ -3,9 +3,17 @@ const chalk = require("chalk");
 const mongoose = require("mongoose");
 
 const config = require("./config/config");
+const Dashboard = require("discord-bot-dashboard");
+const { dash } = require("./config/config");
 
 const Bot = require("./base/Bot"),
     client = new Bot();
+
+const dashboard = new Dashboard(client, {
+	port: 8080,
+	clientSecret: client.config.dash.clientSecret,
+	redirectURI: client.config.dash.redirectURI
+});
 
 const init = async() => {
 
@@ -21,7 +29,6 @@ const init = async() => {
 			}
 		});
 	});
-
 
     const evtFiles = await readdir("./events/");
 	client.logger.log(`Loading a total of ${evtFiles.length} events.`, "Event");
@@ -48,7 +55,8 @@ init();
 client.on("disconnect", () => client.logger.log("Bot is disconnecting...", "warn"))
 	.on("reconnecting", () => client.logger.log("Bot reconnecting...", "log"))
 	.on("error", (e) => client.logger.log(e, "error"))
-	.on("warn", (info) => client.logger.log(info, "warn"));
+	.on("warn", (info) => client.logger.log(info, "warn"))
+	.on("ready", () => dashboard.run());
 
 process.on("unhandledRejection", (err) => {
     console.error(err);
